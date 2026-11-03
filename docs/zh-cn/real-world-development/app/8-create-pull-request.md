@@ -3,7 +3,7 @@ title: "第 8 课 - 创建并合并功能 PR"
 description: "一并审查筛选功能、指令、技能更新、QA 配置文件和测试，然后创建 PR 并使用 Agent Merge。"
 authors:
   - geektrainer
-lastUpdated: 2026-09-17
+lastUpdated: 2026-10-22
 ---
 
 筛选实现、指令更新、技能更新、质量保证 (QA) 配置文件和测试已保存在同一分支上。现在一并审查这些内容，并创建拉取请求。你已自行合并星级评分拉取请求 (PR)；这次将让 **Agent Merge** 管理该流程。
@@ -23,9 +23,9 @@ lastUpdated: 2026-09-17
 
 ## Agent Merge 简介
 
-通过 **Agent Merge**，可以使用 Copilot app 自动执行拉取请求落地前的最后阶段。启用后，应用会话会读取拉取请求并处理阻塞项，包括修复失败的 CI 检查、响应审查意见，以及在需要时变基。GitHub 允许后，它会立即合并。该功能在后台运行，应用重启后仍会继续，并在拉取请求合并后自动关闭。
+通过 **Agent Merge**，Copilot app 可以自动处理合并拉取请求所需的剩余工作。启用后，应用会话会读取拉取请求并解决阻碍合并的问题，包括修复失败的持续集成 (CI) 检查、响应审查意见，以及在需要时变基；随后，在 GitHub 允许的情况下启用自动合并。它会在后台运行，应用重启后仍会继续，并在拉取请求合并后自动关闭。
 
-此前，你一直自行选择 **Merge pull request**。Agent Merge 可以承担这项工作，但它编辑代码和合并的能力仍需要明确授权。授予合并权限前，先审查它允许执行的操作及工作内容。
+此前，你一直自行选择 **Merge pull request**。Agent Merge 可以承担这项工作，但它仍需要你明确授权才能编辑代码和合并。授予合并权限前，先审查它允许执行的操作和已完成的工作。
 
 ## 使用 Agent Merge 管理 PR
 
@@ -33,8 +33,8 @@ lastUpdated: 2026-09-17
 
 1. 使用智能体选择器选择 **Default agent**。
 2. 选择 **Create PR** 旁的下拉菜单。
-3. 选择 **Agent merge**。按钮将更改为 **Agent merge**。
-4. 选择 **Agent merge**，启动 agent merge 流程。
+3. 选择 **Agent Merge**。按钮将更改为 **Agent Merge**。
+4. 选择 **Agent Merge** 按钮，启动流程。仅选择下拉菜单选项并不会开始运行。
 
 Agent merge 流程随即启动。它将：
 
@@ -43,15 +43,23 @@ Agent merge 流程随即启动。它将：
 - 对目标分支执行变基或处理潜在合并冲突。
 - 监视 CI 流程，确保所有检查通过。
 - 监视 PR 中其他开发人员或 Copilot 代码审查提供的反馈，并进行更新以解决这些意见。
-- 可以选择在所有操作成功后自动合并 PR。
+- 如果启用了该选项，可以在所有操作成功后自动合并 PR。
 
-让 Agent merge 在所有检查通过后合并 PR。
+接下来，让 Agent Merge 在所有检查通过后合并 PR。
 
-5. 选择 **Agent merge** 旁的下拉菜单。
-6. 确保 **Merge pull request** 旁有勾选标记。
+5. 在授予合并权限前，审查 PR 差异和验证证据。
+6. 选择 **Agent Merge** 旁的下拉菜单。
+7. 确认 **Merge pull request** 旁有勾选标记。
+8. 明确要求智能体合并：
+
+    ```plaintext
+    Merge the PR once all required checks and approvals pass. Do not bypass repository protections.
+    ```
+
+9. 跟进智能体进度并解决报告的阻碍因素。确认 PR 状态为 **Merged** 后再继续；启用了合并权限或智能体仍在运行，并不代表 PR 已完成合并。
 
 > [!IMPORTANT]
-> Agent Merge 不会绕过存储库保护或缺失的权限。解决这些阻塞项后再继续。
+> Agent Merge 不会绕过存储库保护或权限不足问题。继续前，请先解决这些阻碍因素。
 
 ## 总结与后续步骤
 
